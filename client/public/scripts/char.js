@@ -1,12 +1,12 @@
 const renderChar = async () => {
   const requestedID = parseInt(window.location.href.split("/").pop());
-  const response = await fetch(`/chars`);
+  const response = await fetch(`/chars/search?column=id&value=${requestedID}`);
   const data = await response.json();
   const charContent = document.getElementById("char-content");
   let char;
 
-  if (data) {
-    char = data.find((char) => char.id === requestedID);
+  if (data && data.length > 0) {
+    char = data[0];
   }
 
   if (char) {
